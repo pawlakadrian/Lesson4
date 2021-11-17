@@ -26,9 +26,6 @@
     gdzie producentem jest BMW, z automatyczną skrzynią biegów oraz pojemnością barażnia - trankCapacity większą niż 300 litrów.
  */
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 public class Car {
     private Producent producent;
     private boolean isAutomaticGear;
