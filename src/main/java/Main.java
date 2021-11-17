@@ -48,12 +48,12 @@ public class Main {
         Dimension dim2 = new Dimension(120, 210, 230);
         Dimension dim3 = new Dimension(130, 220, 260);
         Dimension dim4 = new Dimension(140, 230, 270);
-        Dimension dim5 = new Dimension(150, 240, 300);
-        Dimension dim6 = new Dimension(160, 250, 340);
-        Dimension dim7 = new Dimension(170, 260, 380);
+        Dimension dim5 = new Dimension(150, 240, 200);
+        Dimension dim6 = new Dimension(160, 250, 420);
+        Dimension dim7 = new Dimension(170, 260, 520);
         Dimension dim8 = new Dimension(180, 270, 400);
-        Dimension dim9 = new Dimension(190, 280, 440);
-        Dimension dim10 = new Dimension(200, 290, 600);
+        Dimension dim9 = new Dimension(190, 280, 320);
+        Dimension dim10 = new Dimension(200, 290, 500);
 
         // create producents
         Producent toyota = new Producent("Toyota", "Corolla");
@@ -104,9 +104,31 @@ public class Main {
         cars.add(car14);
         cars.add(car15);
 
-        // foreach
-        for (Car car : cars) {
-            car.searchCar(car.producent.getModel(), car.isAutomaticGear, car.dimensions.getTrankCapacity());
+        printCars("BMW", true, 300, cars);
+    }
+
+    public static void printCars(String producent, boolean isAutomatic, int trankCapacity, List<Car> carsList) {
+        List<Car> carsListWithSpecParams = getCarsToList(producent, isAutomatic, trankCapacity, carsList);
+
+        if (carsListWithSpecParams.isEmpty()) {
+            System.out.println("No results");
+        } else {
+            System.out.println("Cars markets with specific parameters: ");
+            for (Car c : carsListWithSpecParams) {
+                System.out.println();
+                c.getMarket().printCountryInformation();
+            }
         }
+    }
+
+    private static List<Car> getCarsToList(String producent, boolean isAutomatic, int trankCapacity, List<Car> carsList) {
+        List<Car> carsWithParams = new ArrayList<>();
+
+        for (Car c : carsList) {
+            if (c.searchCar(producent, isAutomatic, trankCapacity)) {
+                carsWithParams.add(c);
+            }
+        }
+        return carsWithParams;
     }
 }

@@ -30,11 +30,15 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Car {
-    Producent producent;
-    boolean isAutomaticGear;
-    Market market;
-    String segment;
-    Dimension dimensions;
+    private Producent producent;
+    private boolean isAutomaticGear;
+    private Market market;
+    private String segment;
+    private Dimension dimensions;
+
+    public Market getMarket() {
+        return market;
+    }
 
     public Car(Producent producent, boolean isAutomaticGear, Market market, String segment, Dimension dimensions) {
         this.producent = producent;
@@ -55,9 +59,11 @@ public class Car {
                 '}';
     }
 
-    public void searchCar(String model, boolean isAutomaticGear, int trankCapacity) {
-        if (model == "BMW" && isAutomaticGear && trankCapacity > 300) {
-            market.printCountryInformation();
+    public boolean searchCar(String model, boolean isAutomaticGear, int trankCapacity) {
+        if (this.producent.getModel() == model && this.isAutomaticGear == isAutomaticGear && this.dimensions.getTrankCapacity() > trankCapacity) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
